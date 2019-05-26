@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- сверстал простой макет  -->
+    <div class="field-input">
+        <input type="text" class="number-one" placeholder="введите число 1">
+        <input type="text" class="number-two" placeholder="введите число 2"><br>
+        <button class="result">результат</button>
+    </div>
+    <div class="field-result">
+        <span>результат : </span><span class="amount"></span><br>
+        <button class="delete">OK</button>
+    </div>
+
+    <script>
+        // не уверен но слышал что через переменую doc происходит быстрее обращение к DOM 
+        let doc = document;
+        // навешиваю обработчик события на кнопку результат
+        let result = doc.querySelector('.result');
+        result.addEventListener('click', addition);
+
+
+        function addition (){
+            // получаю значения полей ввода 1 и 2 числа
+            let numberOne = doc.querySelector('.number-one').value;
+            let numberTwo = doc.querySelector('.number-two').value;
+            //задаю значения полей по умолчанию
+            if(numberOne == ''  &&  numberTwo == ''){
+                numberOne = 0.1;
+                numberTwo = 0.2;
+            }
+            // складываю числа и преобразоваю к числу
+            let summa = Number(numberOne) + Number(numberTwo);
+            //вывожу результат
+            let amount = doc.querySelector('.amount');
+            amount.innerText = summa.toFixed(1);
+        }
+        // навешиваю обработчик события на кнопку OK
+        let del = doc.querySelector('.delete');
+        del.addEventListener('click', delNumber);
+        
+        function delNumber (){
+            // очищаю поля ввода чисел и результата0
+            let numberOne = doc.querySelector('.number-one').value = '';
+            let numberTwo = doc.querySelector('.number-two').value = '';
+            let amount = doc.querySelector('.amount').innerText = '';
+        }
+    </script>
+    
+</body>
+</html>
